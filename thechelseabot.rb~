@@ -25,12 +25,8 @@ def reply_mentions
 
     mentions.each do |mention|
       reply=responses["thechelseabot"].sample
-      begin
-        Twitter.update("@#{mention.from_user} #{reply}",:in_reply_to_status_id=>mention.id)
+      Twitter.update("@#{mention.from_user} #{reply}",:in_reply_to_status_id=>mention.id)
       puts "Replied to: #{mention.from_user} (#{mention.id}) => #{reply}\n____________________________________________"
-      rescue
-        puts "Error Replying"
-      end
     end
 
     idstore["last_mention"]=mentions.last.id
